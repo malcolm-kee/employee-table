@@ -1,25 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { parseDate } from 'lib/date';
+import { EmployeeLanding } from 'modules/employee';
+import EmployeeData from './data/employee-data.json';
+
+const employees = EmployeeData.map((employee) => ({
+  ...employee,
+  dateJoined: parseDate(employee.dateJoined),
+}));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="max-w-6xl mx-auto px-3 py-6 sm:px-6">
+      <EmployeeLanding employees={employees} />
+    </main>
   );
 }
 
